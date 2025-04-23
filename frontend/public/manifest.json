@@ -1,0 +1,23 @@
+{
+	"name": "Blog Platform",
+	"short_name": "BlogApp",
+	"description": "A modern blog platform for sharing your thoughts",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#f8f9fa",
+	"theme_color": "#4caf50",
+	"icons": [
+		{
+			"src": "/icons/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/icons/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	]
+}

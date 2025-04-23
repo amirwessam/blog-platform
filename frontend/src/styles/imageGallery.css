@@ -1,0 +1,9 @@
+.image-drag-placeholder {
+	border: 2px dashed #4caf50;
+	border-radius: 6px;
+	background-color: #f1f8e9;
+}
+
+.image-gallery-animation-container {
+	transition: transform 0.2s ease;
+}
