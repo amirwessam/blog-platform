@@ -49,7 +49,12 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Serve React frontend static files
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+const distPath = path.join(__dirname, '../frontend/dist');
+console.log('Serving static files from:', distPath);
+app.use(express.static(distPath, { 
+  maxAge: '1d',
+  etag: false 
+}));
 
 // API routes
 app.use('/api/blogs', blogRoutes);
@@ -61,7 +66,14 @@ app.get('/api/health', (req, res) => {
 
 // SPA fallback - serve index.html for all non-API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  const indexPath = path.join(__dirname, '../frontend/dist/index.html');
+  console.log('Serving SPA from:', indexPath);
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error('Error serving index.html:', err);
+      res.status(500).json({ error: 'Failed to load application' });
+    }
+  });
 });
 
 // Error handling middleware
