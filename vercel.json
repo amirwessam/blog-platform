@@ -3,10 +3,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "frontend/dist",
   "installCommand": "npm install && cd frontend && npm install",
-  "env": {
-    "MONGO_URI": "@MONGO_URI",
-    "NODE_ENV": "production"
-  },
   "functions": {
     "api/index.js": {
       "runtime": "nodejs20.x",
