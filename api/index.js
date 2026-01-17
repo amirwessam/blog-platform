@@ -48,12 +48,20 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 // Serve static files from uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Serve React frontend static files
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
 // API routes
 app.use('/api/blogs', blogRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString(), db: dbConnected ? 'connected' : 'connecting' });
+});
+
+// SPA fallback - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 // Error handling middleware
