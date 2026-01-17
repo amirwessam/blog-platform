@@ -239,7 +239,7 @@ Your app is now running:
 1. Create account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 2. Create a free cluster
 3. Add database user (username & password)
-4. Get connection string (format: `mongodb+srv://user:pass@cluster.mongodb.net/database`)
+4. Get connection string in format: `mongodb+srv://<username>:<password>@<cluster>.mongodb.net/blogPlatform`
 5. Whitelist IPs: Allow `0.0.0.0/0` in Network Access
 
 ### Step 2: Deploy to Vercel
@@ -254,9 +254,11 @@ Your app is now running:
 In Vercel Project Settings → Environment Variables:
 
 ```
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/blogPlatform
+MONGO_URI=mongodb+srv://<your_username>:<your_password>@<your_cluster>.mongodb.net/blogPlatform
 NODE_ENV=production
 ```
+
+⚠️ **Important**: Replace `<your_username>`, `<your_password>`, and `<your_cluster>` with your actual MongoDB Atlas credentials. Never commit actual credentials to version control.
 
 ### Step 4: Configure Build
 
