@@ -9,8 +9,25 @@ require('dotenv').config();
 
 const app = express();
 
-// Initialize database connection
-connectDB();
+// Connect to database on first request (lazy initialization)
+let dbConnected = false;
+
+app.use(async (req, res, next) => {
+  if (!dbConnected) {
+    try {
+      await connectDB();
+      dbConnected = true;
+    } catch (error) {
+      console.error('Database connection failed:', error);
+      return res.status(503).json({
+        error: 'Database connection failed',
+        message: 'The service is temporarily unavailable. Please check your MONGO_URI configuration.',
+        status: 503
+      });
+    }
+  }
+  next();
+});
 
 // Middleware
 app.use(compression());
@@ -36,7 +53,7 @@ app.use('/api/blogs', blogRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), db: dbConnected ? 'connected' : 'connecting' });
 });
 
 // Error handling middleware
