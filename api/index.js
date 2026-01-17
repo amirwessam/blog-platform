@@ -48,4 +48,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Export for Vercel serverless function
+module.exports = app;
+
 module.exports = app;

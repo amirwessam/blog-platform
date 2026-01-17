@@ -2,19 +2,21 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "frontend/dist",
+  "installCommand": "npm install && cd frontend && npm install",
   "env": {
     "MONGO_URI": "@MONGO_URI",
     "NODE_ENV": "production"
   },
   "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
+    "api/index.js": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/api"
     },
     {
       "source": "/(.*)",
