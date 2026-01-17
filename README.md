@@ -156,7 +156,8 @@ npm run preview
 
 ### Step 1: Prepare MongoDB
 1. Create a MongoDB Atlas cluster at https://www.mongodb.com/cloud/atlas
-2. Get your connection string (it will look like: `mongodb+srv://username:password@cluster.mongodb.net/database`)
+2. Get your connection string from MongoDB Atlas (format: `mongodb+srv://<username>:<password>@cluster.mongodb.net/blogPlatform`)
+   - Replace `<username>` and `<password>` with your Atlas credentials
 
 ### Step 2: Connect to Vercel
 1. Push your code to GitHub
