@@ -39,6 +39,17 @@ lerna-debug.log*
 /uploads/*
 !/uploads/.gitkeep
 
+# Vercel
+.vercel/
+.vercel
+
+# Environment template
+.env.vercel
+
+# OS
+Thumbs.db
+.env.*.local
+
 # Misc
 *.local
 .temp
